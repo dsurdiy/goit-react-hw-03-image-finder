@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Modal } from 'components/Modal/Modal';
 import { Component } from 'react';
 import css from './ImageGalleryItem.module.css';
@@ -8,7 +9,7 @@ export class ImageGalleryItem extends Component {
   };
 
   handleItemClick = e => {
-    if (e.currentTarget !== e.target) {
+    if (e.target.nodeName === 'IMG') {
       this.setState({ showModal: true });
     }
   };
@@ -32,3 +33,9 @@ export class ImageGalleryItem extends Component {
     );
   }
 }
+
+ImageGalleryItem.propTypes = {
+  id: PropTypes.number.isRequired,
+  webformatURL: PropTypes.string.isRequired,
+  largeImageURL: PropTypes.string.isRequired,
+};
